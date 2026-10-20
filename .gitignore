@@ -3,5 +3,6 @@ dist
 .DS_Store
 *.log
 .vercel
+.env*
 desktop.ini
 BRIEF.md

@@ -18,9 +18,10 @@ export default function Hero() {
       aria-labelledby="hero-title"
       className="relative flex min-h-svh flex-col px-5 pt-24 pb-6 md:block md:px-10 md:pb-0"
     >
-      <SectionLabel className="relative z-30" data-anim="hero-ui">
-        {sectionLabels.intro}
-      </SectionLabel>
+      {/* data-anim="hero-fade": capa que se desvanece con el scroll; data-anim="hero-ui": entrada al cargar */}
+      <div data-anim="hero-fade" className="relative z-30">
+        <SectionLabel data-anim="hero-ui">{sectionLabels.intro}</SectionLabel>
+      </div>
 
       <h1
         id="hero-title"
@@ -65,39 +66,41 @@ export default function Hero() {
         />
       </div>
 
-      <div
-        data-anim="hero-ui"
-        className="relative z-30 mt-8 max-w-md md:absolute md:bottom-24 md:left-10 md:mt-0 md:max-w-[min(26rem,30vw)]"
-      >
-        <p className="text-lg font-bold">{profile.tagline}</p>
-        <p className="mt-3 text-base leading-relaxed text-rose-200">{profile.heroText}</p>
-      </div>
+      <div data-anim="hero-fade" className="contents md:pointer-events-none md:absolute md:inset-0 md:z-30 md:block">
+        <div
+          data-anim="hero-ui"
+          className="relative z-30 md:pointer-events-auto mt-8 max-w-md md:absolute md:bottom-24 md:left-10 md:mt-0 md:max-w-[min(26rem,30vw)]"
+        >
+          <p className="text-lg font-bold">{profile.tagline}</p>
+          <p className="mt-3 text-base leading-relaxed text-rose-200">{profile.heroText}</p>
+        </div>
 
-      <div
-        data-anim="hero-ui"
-        className="relative z-30 mt-6 flex flex-wrap gap-3 md:absolute md:right-10 md:bottom-24 md:mt-0 md:flex-col md:items-end"
-      >
-        <Button onClick={() => scrollToSection('proyectos')}>Ver proyectos</Button>
-        <Button variant="secondary" href={profile.cv} download icon={Download}>
-          Descargar CV
-        </Button>
-      </div>
+        <div
+          data-anim="hero-ui"
+          className="relative z-30 md:pointer-events-auto mt-6 flex flex-wrap gap-3 md:absolute md:right-10 md:bottom-24 md:mt-0 md:flex-col md:items-end"
+        >
+          <Button onClick={() => scrollToSection('proyectos')}>Ver proyectos</Button>
+          <Button variant="secondary" href={profile.cv} download icon={Download}>
+            Descargar CV
+          </Button>
+        </div>
 
-      <div
-        data-anim="hero-ui"
-        className="relative z-30 mt-auto flex items-center justify-between gap-4 pt-10 font-mono text-[11px] tracking-[0.18em] text-rose-200 uppercase md:absolute md:inset-x-10 md:bottom-7 md:pt-0"
-      >
-        <span className="flex items-center gap-10">
-          {profile.location}
-          <span className="hidden items-center gap-2 md:flex" aria-hidden="true">
-            <ArrowDown size={14} className="animate-bounce" />
-            Scroll
+        <div
+          data-anim="hero-ui"
+          className="relative z-30 md:pointer-events-auto mt-auto flex items-center justify-between gap-4 pt-10 font-mono text-[11px] tracking-[0.18em] text-rose-200 uppercase md:absolute md:inset-x-10 md:bottom-7 md:pt-0"
+        >
+          <span className="flex items-center gap-10">
+            {profile.location}
+            <span className="hidden items-center gap-2 md:flex" aria-hidden="true">
+              <ArrowDown size={14} className="animate-bounce" />
+              Scroll
+            </span>
           </span>
-        </span>
-        <span className="flex items-center gap-2">
-          <span className="size-1.5 rounded-full bg-rose-200" aria-hidden="true" />
-          {profile.availability}
-        </span>
+          <span className="flex items-center gap-2">
+            <span className="size-1.5 rounded-full bg-rose-200" aria-hidden="true" />
+            {profile.availability}
+          </span>
+        </div>
       </div>
     </section>
   )

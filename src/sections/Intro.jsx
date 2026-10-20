@@ -50,7 +50,7 @@ export default function Intro() {
           },
         })
 
-        tl.to(q('[data-anim="hero-ui"]'), { autoAlpha: 0, y: -20, duration: 0.3 }, 0)
+        tl.to(q('[data-anim="hero-fade"]'), { autoAlpha: 0, y: -20, duration: 0.3 }, 0)
           .to(q('[data-anim="name"]'), { scale: 1.35, autoAlpha: 0, duration: 0.8, ease: 'power1.in' }, 0)
           // "Se enciende la luz": el fondo crema aparece sobre el ciruela
           .to(q('[data-anim="light"]'), { opacity: 1, duration: 0.6 }, 0.1)
