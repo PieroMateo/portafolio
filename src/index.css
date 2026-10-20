@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+/*
+ * "cinematic" = desktop con animaciones permitidas.
+ * Solo en este modo hay pin, scrub y capas superpuestas;
+ * en móvil o con prefers-reduced-motion cada escena es una sección normal.
+ */
+@custom-variant cinematic (@media (min-width: 768px) and (prefers-reduced-motion: no-preference));
+
+@theme {
+  /* Paleta "ciruela": solo estos colores existen en el proyecto */
+  --color-*: initial;
+  --color-plum-950: #190019;
+  --color-plum-900: #2b124c;
+  --color-plum-700: #522b5b;
+  --color-plum-500: #854f6c;
+  --color-rose-200: #dfb6b2;
+  --color-cream-50: #fbe4d8;
+
+  --font-*: initial;
+  --font-display: "Syne", "DM Sans", sans-serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --tracking-tightest: -0.055em;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-plum-950);
+    color: var(--color-cream-50);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-rose-200);
+    color: var(--color-plum-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rose-200);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .on-light :focus-visible {
+    outline-color: var(--color-plum-950);
+  }
+}
+
+/* Titulares con contorno y relleno transparente */
+@utility text-outline-cream {
+  color: transparent;
+  -webkit-text-stroke: 0.025em var(--color-cream-50);
+}
+
+@utility text-outline-plum {
+  color: transparent;
+  -webkit-text-stroke: 0.02em var(--color-plum-950);
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
